@@ -51,7 +51,7 @@ public interface CustomerAccountApi {
         @ApiResponse(code = 200, message = "List of CustomerAccount", response = CustomerAccount.class, responseContainer = "List") })
     @RequestMapping(value = "/customerAccount",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        /*consumes = { "application/json" },*/
         method = RequestMethod.GET)
     ResponseEntity<List<CustomerAccount>> customerAccountFind(@ApiParam(value = "") @Valid @RequestParam(value = "fields", required = false) String fields);
 
