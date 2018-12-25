@@ -8,17 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Service
-public class BaseServiceImpl<T> {
+
+public abstract class BaseServiceImpl<T> {
 
     private static Logger log = Logger.getLogger(BaseServiceImpl.class.getName());
 
-    @Autowired
-    private BaseDaoImpl<CustomerAccount> customerAccountBaseDao;
-
-    public List<T> list(){
-        log.info("customerAccountBaseDao: "+customerAccountBaseDao);
-        return (List<T>) customerAccountBaseDao.find();
-    }
+    public abstract List<T> list();
 
 }

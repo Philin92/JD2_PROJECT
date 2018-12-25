@@ -1,30 +1,25 @@
 package io.swagger.dao;
 
 import io.swagger.model.CustomerAccount;
-import org.springframework.stereotype.Repository;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@Repository
-public class BaseDaoImpl<T> {
 
-    public List<T> find(){
-        return List.of(testData("1"),testData("2"),testData("3"));
-    }
+public abstract class BaseDaoImpl<T> {
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    public abstract List<T> find();
 
     public boolean add(List<T> items){
         return false;
     }
 
-    private T testData(String prefix){
-
-        CustomerAccount customerAccount = new CustomerAccount();
-
-        customerAccount.setAccountType("accountType"+prefix);
-        customerAccount.setCreditLimit("100000");
-        customerAccount.setDescription("desc"+prefix);
-        customerAccount.setName("account"+prefix);
-
-        return (T) customerAccount;
+    Session openSession(){
+        return sessionFactory.openSession();
     }
 }

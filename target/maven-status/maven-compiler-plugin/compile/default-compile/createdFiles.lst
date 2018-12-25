@@ -1,5 +1,6 @@
 io\swagger\configuration\HomeController.class
 io\swagger\model\CustomerAccountBalance.class
+io\swagger\dao\CustomerAccountDaoImpl.class
 io\swagger\api\CustomerAccountApi.class
 io\swagger\model\Customer.class
 io\swagger\configuration\JacksonConfiguration.class
@@ -27,6 +28,7 @@ io\swagger\model\Reference.class
 io\swagger\configuration\CustomInstantDeserializer$2.class
 io\swagger\configuration\CustomInstantDeserializer$FromDecimalArguments.class
 io\swagger\configuration\CustomInstantDeserializer$1.class
+io\swagger\services\BaseServiceImpl.class
 io\swagger\model\Characteristic.class
 io\swagger\model\CustomerRef.class
 io\swagger\api\PaymentMeanApi.class
@@ -34,6 +36,7 @@ io\swagger\configuration\CustomInstantDeserializer$10.class
 io\swagger\model\ContactMedium.class
 io\swagger\configuration\CustomInstantDeserializer$8.class
 io\swagger\model\CustomerAccount.class
+io\swagger\dao\BaseDaoImpl.class
 io\swagger\model\Contact.class
 io\swagger\configuration\CustomInstantDeserializer$4.class
 io\swagger\model\CustomerAccountRef.class
@@ -45,8 +48,10 @@ io\swagger\model\Hub.class
 io\swagger\model\PaymentMeanRef.class
 io\swagger\configuration\CustomInstantDeserializer.class
 io\swagger\configuration\CustomInstantDeserializer$7.class
+io\swagger\services\CustomerAccountServiceImpl.class
 io\swagger\Swagger2SpringBoot.class
 io\swagger\api\ApiOriginFilter.class
+io\swagger\configuration\HibernateXMLConf.class
 io\swagger\api\HubApiController.class
 io\swagger\RFC3339DateFormat.class
 io\swagger\model\CustomerCreditProfile.class

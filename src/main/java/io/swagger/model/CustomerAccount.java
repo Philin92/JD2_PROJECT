@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -23,59 +25,74 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Entity
 public class CustomerAccount   {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @JsonProperty("id")
   private Long id = null;
 
   @JsonProperty("href")
+  @Column
   private String href = null;
 
   @JsonProperty("name")
+  @Column
   private String name = null;
 
   @JsonProperty("description")
+  @Column
   private String description = null;
 
   @JsonProperty("status")
+  @Column
   private String status = null;
 
   @JsonProperty("accountType")
+  @Column
   private String accountType = null;
 
   @JsonProperty("creditLimit")
+  @Transient
   private String creditLimit = null;
 
   @JsonProperty("pin")
+  @Column
   private String pin = null;
 
   @JsonProperty("receivableBalance")
+  @Column
   private Float receivableBalance = null;
 
   @JsonProperty("customerAccountTaxExemption")
   @Valid
+  @Transient
   private List<CustomerAccountTaxExemption> customerAccountTaxExemption = null;
 
   @JsonProperty("customerAccountRelationship")
   @Valid
+  @Transient
   private List<CustomerAccountRelationship> customerAccountRelationship = null;
 
   @JsonProperty("contact")
   @Valid
+  @Transient
   private List<Contact> contact = null;
 
   @JsonProperty("customer")
+  @Transient
   private CustomerRef customer = null;
 
   @JsonProperty("customerAccountBalance")
-  @Valid
+  @Transient
   private List<CustomerAccountBalance> customerAccountBalance = null;
 
   @JsonProperty("paymentPlan")
-  @Valid
+  @Transient
   private List<PaymentPlan> paymentPlan = null;
 
   @JsonProperty("lastModified")
+  @Transient
   private OffsetDateTime lastModified = null;
 
   public CustomerAccount id(Long id) {
