@@ -60,27 +60,47 @@ public class Customer   {
   @JsonProperty("relatedParty")
   private Reference relatedParty = null;
 
-  @Transient
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customer_id")
   @JsonProperty("characteristic")
   @Valid
   private List<Characteristic> characteristic = null;
 
-  @Transient
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customer_id")
   @JsonProperty("contactMedium")
   @Valid
   private List<ContactMedium> contactMedium = null;
 
-  @Transient
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customer_id")
   @JsonProperty("customerAccount")
   @Valid
   private List<CustomerAccount> customerAccount = null;
 
-  @Transient
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customer_id")
   @JsonProperty("customerCreditProfile")
   @Valid
   private List<CustomerCreditProfile> customerCreditProfile = null;
 
-  @Transient
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customer_id")
   @JsonProperty("paymentMean")
   @Valid
   private List<PaymentMean> paymentMean = null;

@@ -6,8 +6,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.model.ValidFor;
+import org.hibernate.annotations.GenericGenerator;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -16,23 +19,42 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Entity
 public class CustomerCreditProfile   {
+  //TODO УТОЧНИТЬ ПРО ЭТОТ ID, ДОБАВИЛ ЕГО САМ.
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @JsonProperty("id")
+  private String id = null;
+
+  @Column
   @JsonProperty("creditProfileDate")
   private OffsetDateTime creditProfileDate = null;
 
+  @Embedded
   @JsonProperty("validFor")
   private ValidFor validFor = null;
 
+  @Column
   @JsonProperty("creditRiskRating")
   private String creditRiskRating = null;
 
+  @Column
   @JsonProperty("creditScore")
   private String creditScore = null;
 
   public CustomerCreditProfile creditProfileDate(OffsetDateTime creditProfileDate) {
     this.creditProfileDate = creditProfileDate;
     return this;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   /**

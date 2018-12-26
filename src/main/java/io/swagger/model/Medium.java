@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -14,32 +17,41 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Embeddable
 public class Medium   {
+  @Column
   @JsonProperty("city")
   private String city = null;
 
+  @Column
   @JsonProperty("country")
   private String country = null;
 
+  @Column
   @JsonProperty("emailAddress")
   private String emailAddress = null;
 
+  @Column
   @JsonProperty("type")
   private String type = null;
 
+  @Column
   @JsonProperty("number")
   private String number = null;
 
+  @Column
   @JsonProperty("postcode")
   private String postcode = null;
 
+  @Column
   @JsonProperty("stateOrProvince")
   private String stateOrProvince = null;
 
+  @Column
   @JsonProperty("streetOne")
   private String streetOne = null;
 
+  @Column
   @JsonProperty("streetTwo")
   private String streetTwo = null;
 

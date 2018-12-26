@@ -8,6 +8,11 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.model.Medium;
 import io.swagger.model.ValidFor;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -16,17 +21,23 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Entity
 public class ContactMedium   {
+  //TODO Попросить объяснения этого поля
+  @Id
+  @Column(name = "Id")
   @JsonProperty("type")
   private String type = null;
 
+  @Embedded
   @JsonProperty("validFor")
   private ValidFor validFor = null;
 
+  @Embedded
   @JsonProperty("medium")
   private Medium medium = null;
 
+  @Column
   @JsonProperty("preferred")
   private String preferred = null;
 
