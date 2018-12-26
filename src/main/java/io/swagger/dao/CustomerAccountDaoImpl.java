@@ -44,9 +44,12 @@ public class CustomerAccountDaoImpl<T> extends BaseDaoImpl {
 
     private T customerAccount(String prefix){
         CustomerAccount customerAccount = new CustomerAccount();
-        customerAccount.setName("CustomerName"+prefix);
+        /*customerAccount.setName("CustomerName"+prefix);
         customerAccount.setDescription("Description"+prefix);
-        customerAccount.setAccountType("AccountType"+prefix);
+        customerAccount.setAccountType("AccountType"+prefix);*/
+        customerAccount.setName("CustomerAccount"+prefix);
+        customerAccount.setDescription("Description"+prefix);
+        customerAccount.setCreditLimit("10000"+prefix);
 
         return (T)customerAccount;
     }

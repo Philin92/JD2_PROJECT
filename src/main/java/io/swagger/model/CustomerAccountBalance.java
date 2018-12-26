@@ -24,6 +24,7 @@ public class CustomerAccountBalance   {
   @Id
   @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @JsonProperty("id")
   private String id;
 
   @Column
@@ -41,6 +42,14 @@ public class CustomerAccountBalance   {
   @Column
   @JsonProperty("status")
   private String status = null;
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public CustomerAccountBalance type(String type) {
     this.type = type;

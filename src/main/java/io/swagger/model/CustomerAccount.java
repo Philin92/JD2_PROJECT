@@ -63,6 +63,7 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountTaxExemption")
   @Valid
+  /*@Transient*/
   private List<CustomerAccountTaxExemption> customerAccountTaxExemption = null;
 
   @OneToMany(
@@ -72,6 +73,7 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountRelationship")
   @Valid
+  /*@Transient*/
   private List<CustomerAccountRelationship> customerAccountRelationship = null;
 
   @OneToMany(
@@ -81,6 +83,7 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("contact")
   @Valid
+  /*@Transient*/
   private List<Contact> contact = null;
 
   @ManyToOne(cascade = CascadeType.ALL)
@@ -93,6 +96,7 @@ public class CustomerAccount   {
   )
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountBalance")
+  /*@Transient*/
   private List<CustomerAccountBalance> customerAccountBalance = null;
 
   @OneToMany(
@@ -101,6 +105,7 @@ public class CustomerAccount   {
   )
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("paymentPlan")
+  /*@Transient*/
   private List<PaymentPlan> paymentPlan = null;
 
   @Column

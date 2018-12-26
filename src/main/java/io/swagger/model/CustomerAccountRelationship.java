@@ -29,6 +29,7 @@ public class CustomerAccountRelationship   {
   @Id
   @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @JsonProperty("id")
   private String id;
 
   @Column
@@ -51,6 +52,14 @@ public class CustomerAccountRelationship   {
   public CustomerAccountRelationship relationshipType(String relationshipType) {
     this.relationshipType = relationshipType;
     return this;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   /**
