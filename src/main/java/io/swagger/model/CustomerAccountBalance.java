@@ -6,7 +6,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.model.ValidFor;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -15,17 +18,27 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Entity
 public class CustomerAccountBalance   {
+  //TODO: Анологично с id
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  private String id;
+
+  @Column
   @JsonProperty("type")
   private String type = null;
 
+  @Column
   @JsonProperty("amount")
   private Float amount = null;
 
+  @Embedded
   @JsonProperty("validFor")
   private ValidFor validFor = null;
 
+  @Column
   @JsonProperty("status")
   private String status = null;
 

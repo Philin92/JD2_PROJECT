@@ -2,15 +2,8 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.model.Contact;
-import io.swagger.model.CustomerAccountBalance;
-import io.swagger.model.CustomerAccountRelationship;
-import io.swagger.model.CustomerAccountTaxExemption;
-import io.swagger.model.CustomerRef;
-import io.swagger.model.PaymentPlan;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.threeten.bp.OffsetDateTime;
@@ -18,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 
 /**
  * CustomerAccount
@@ -53,7 +45,7 @@ public class CustomerAccount   {
   private String accountType = null;
 
   @JsonProperty("creditLimit")
-  @Transient
+  @Column
   private String creditLimit = null;
 
   @JsonProperty("pin")
@@ -64,35 +56,55 @@ public class CustomerAccount   {
   @Column
   private Float receivableBalance = null;
 
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountTaxExemption")
   @Valid
-  @Transient
   private List<CustomerAccountTaxExemption> customerAccountTaxExemption = null;
 
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountRelationship")
   @Valid
-  @Transient
   private List<CustomerAccountRelationship> customerAccountRelationship = null;
 
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customerAccount_id")
   @JsonProperty("contact")
   @Valid
-  @Transient
   private List<Contact> contact = null;
 
-  @JsonProperty("customer")
-  @Transient
-  private CustomerRef customer = null;
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JsonProperty("customerRef")
+  private CustomerRef customerRef = null; //ИЗМЕНИЛ НАЗВАНИЕ ССЫЛКИ, С customer НА customerRef
 
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountBalance")
-  @Transient
   private List<CustomerAccountBalance> customerAccountBalance = null;
 
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customerAccount_id")
   @JsonProperty("paymentPlan")
-  @Transient
   private List<PaymentPlan> paymentPlan = null;
 
+  @Column
   @JsonProperty("lastModified")
-  @Transient
   private OffsetDateTime lastModified = null;
 
   public CustomerAccount id(Long id) {
@@ -363,7 +375,7 @@ public class CustomerAccount   {
   }
 
   public CustomerAccount customer(CustomerRef customer) {
-    this.customer = customer;
+    this.customerRef = customer;
     return this;
   }
 
@@ -375,12 +387,12 @@ public class CustomerAccount   {
 
   @Valid
 
-  public CustomerRef getCustomer() {
-    return customer;
+  public CustomerRef getCustomerRef() {
+    return customerRef;
   }
 
-  public void setCustomer(CustomerRef customer) {
-    this.customer = customer;
+  public void setCustomerRef(CustomerRef customer) {
+    this.customerRef = customer;
   }
 
   public CustomerAccount customerAccountBalance(List<CustomerAccountBalance> customerAccountBalance) {
@@ -484,7 +496,7 @@ public class CustomerAccount   {
         Objects.equals(this.customerAccountTaxExemption, customerAccount.customerAccountTaxExemption) &&
         Objects.equals(this.customerAccountRelationship, customerAccount.customerAccountRelationship) &&
         Objects.equals(this.contact, customerAccount.contact) &&
-        Objects.equals(this.customer, customerAccount.customer) &&
+        Objects.equals(this.customerRef, customerAccount.customerRef) &&
         Objects.equals(this.customerAccountBalance, customerAccount.customerAccountBalance) &&
         Objects.equals(this.paymentPlan, customerAccount.paymentPlan) &&
         Objects.equals(this.lastModified, customerAccount.lastModified);
@@ -492,7 +504,7 @@ public class CustomerAccount   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, href, name, description, status, accountType, creditLimit, pin, receivableBalance, customerAccountTaxExemption, customerAccountRelationship, contact, customer, customerAccountBalance, paymentPlan, lastModified);
+    return Objects.hash(id, href, name, description, status, accountType, creditLimit, pin, receivableBalance, customerAccountTaxExemption, customerAccountRelationship, contact, customerRef, customerAccountBalance, paymentPlan, lastModified);
   }
 
   @Override
@@ -512,7 +524,7 @@ public class CustomerAccount   {
     sb.append("    customerAccountTaxExemption: ").append(toIndentedString(customerAccountTaxExemption)).append("\n");
     sb.append("    customerAccountRelationship: ").append(toIndentedString(customerAccountRelationship)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
-    sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
+    sb.append("    customer: ").append(toIndentedString(customerRef)).append("\n");
     sb.append("    customerAccountBalance: ").append(toIndentedString(customerAccountBalance)).append("\n");
     sb.append("    paymentPlan: ").append(toIndentedString(paymentPlan)).append("\n");
     sb.append("    lastModified: ").append(toIndentedString(lastModified)).append("\n");

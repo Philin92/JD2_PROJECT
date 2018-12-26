@@ -7,6 +7,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.model.ValidFor;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -15,18 +20,23 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Entity
 public class CustomerAccountTaxExemption   {
+
   @JsonProperty("issuingJurisdiction")
+  @Column
   private String issuingJurisdiction = null;
 
+  @Id
   @JsonProperty("certificateNumber")
   private String certificateNumber = null;
 
   @JsonProperty("reason")
+  @Column
   private String reason = null;
 
   @JsonProperty("validFor")
+  @Embedded
   private ValidFor validFor = null;
 
   public CustomerAccountTaxExemption issuingJurisdiction(String issuingJurisdiction) {

@@ -9,7 +9,11 @@ import io.swagger.model.CustomerAccountRef;
 import io.swagger.model.ValidFor;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -18,14 +22,28 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Entity
 public class CustomerAccountRelationship   {
+
+  //TODO: ID , ДОБАВИЛ САМ
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  private String id;
+
+  @Column
   @JsonProperty("relationshipType")
   private String relationshipType = null;
 
+  @Embedded
   @JsonProperty("validFor")
   private ValidFor validFor = null;
 
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "customerAccountRelationship_id")
   @JsonProperty("customerAccount")
   @Valid
   private List<CustomerAccountRef> customerAccount = null;

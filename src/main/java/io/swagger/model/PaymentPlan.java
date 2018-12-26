@@ -2,45 +2,58 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.model.PaymentMeanRef;
-import io.swagger.model.ValidFor;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 
 /**
  * PaymentPlan
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Entity
 public class PaymentPlan   {
+  //TODO: ID
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @JsonProperty("id")
+  private String id;
+
+  @Column
   @JsonProperty("status")
   private String status = null;
 
+  @Column
   @JsonProperty("type")
   private String type = null;
 
+  @Column
   @JsonProperty("priority")
   private String priority = null;
 
+  @Column
   @JsonProperty("amount")
   private Float amount = null;
 
+  @Column
   @JsonProperty("paymentFrequency")
   private String paymentFrequency = null;
 
+  @Column
   @JsonProperty("numberOfPayments")
   private String numberOfPayments = null;
 
+  @Embedded
   @JsonProperty("validFor")
   private ValidFor validFor = null;
 
-  @JsonProperty("paymentMean")
-  private PaymentMeanRef paymentMean = null;
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JsonProperty("paymentMeanRef")
+  private PaymentMeanRef paymentMeanRef = null;//ИМЕНИЛ НАСВАНИЕ ССЫЛКИ С paymentMean, НА paymentMeanRef
 
   public PaymentPlan status(String status) {
     this.status = status;
@@ -184,7 +197,7 @@ public class PaymentPlan   {
   }
 
   public PaymentPlan paymentMean(PaymentMeanRef paymentMean) {
-    this.paymentMean = paymentMean;
+    this.paymentMeanRef = paymentMean;
     return this;
   }
 
@@ -196,12 +209,12 @@ public class PaymentPlan   {
 
   @Valid
 
-  public PaymentMeanRef getPaymentMean() {
-    return paymentMean;
+  public PaymentMeanRef getPaymentMeanRef() {
+    return paymentMeanRef;
   }
 
-  public void setPaymentMean(PaymentMeanRef paymentMean) {
-    this.paymentMean = paymentMean;
+  public void setPaymentMeanRef(PaymentMeanRef paymentMean) {
+    this.paymentMeanRef = paymentMean;
   }
 
 
@@ -221,12 +234,12 @@ public class PaymentPlan   {
         Objects.equals(this.paymentFrequency, paymentPlan.paymentFrequency) &&
         Objects.equals(this.numberOfPayments, paymentPlan.numberOfPayments) &&
         Objects.equals(this.validFor, paymentPlan.validFor) &&
-        Objects.equals(this.paymentMean, paymentPlan.paymentMean);
+        Objects.equals(this.paymentMeanRef, paymentPlan.paymentMeanRef);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, type, priority, amount, paymentFrequency, numberOfPayments, validFor, paymentMean);
+    return Objects.hash(status, type, priority, amount, paymentFrequency, numberOfPayments, validFor, paymentMeanRef);
   }
 
   @Override
@@ -241,7 +254,7 @@ public class PaymentPlan   {
     sb.append("    paymentFrequency: ").append(toIndentedString(paymentFrequency)).append("\n");
     sb.append("    numberOfPayments: ").append(toIndentedString(numberOfPayments)).append("\n");
     sb.append("    validFor: ").append(toIndentedString(validFor)).append("\n");
-    sb.append("    paymentMean: ").append(toIndentedString(paymentMean)).append("\n");
+    sb.append("    paymentMean: ").append(toIndentedString(paymentMeanRef)).append("\n");
     sb.append("}");
     return sb.toString();
   }

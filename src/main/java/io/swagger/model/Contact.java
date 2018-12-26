@@ -11,6 +11,8 @@ import io.swagger.model.ValidFor;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -19,24 +21,34 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Entity
 public class Contact   {
+  @Column
   @JsonProperty("contactType")
   private String contactType = null;
 
+  @Embedded
   @JsonProperty("validFor")
   private ValidFor validFor = null;
 
+  @Id
   @JsonProperty("contactName")
   private String contactName = null;
 
+  @Column
   @JsonProperty("partyRoleType")
   private String partyRoleType = null;
 
+  @OneToMany(
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  @JoinColumn(name = "contakt_name")
   @JsonProperty("contactMedium")
   @Valid
   private List<ContactMedium> contactMedium = null;
 
+  @ManyToOne(cascade = CascadeType.ALL)
   @JsonProperty("relatedParty")
   private Reference relatedParty = null;
 
