@@ -10,6 +10,8 @@ import io.swagger.model.CreditCard;
 import io.swagger.model.Reference;
 import io.swagger.model.ValidFor;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -18,29 +20,38 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Entity
 public class PaymentMean   {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @JsonProperty("id")
   private Long id = null;
 
+  @Column
   @JsonProperty("href")
   private String href = null;
 
+  @Column
   @JsonProperty("name")
   private String name = null;
 
+  @Embedded
   @JsonProperty("validFor")
   private ValidFor validFor = null;
 
+  @Column
   @JsonProperty("type")
   private String type = null;
 
+  @ManyToOne(cascade = CascadeType.ALL)
   @JsonProperty("bankAccount")
   private BankAccount bankAccount = null;
 
+  @ManyToOne(cascade = CascadeType.ALL)
   @JsonProperty("relatedParty")
   private Reference relatedParty = null;
 
+  @ManyToOne(cascade = CascadeType.ALL)
   @JsonProperty("creditCard")
   private CreditCard creditCard = null;
 

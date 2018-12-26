@@ -7,6 +7,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -15,11 +18,13 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Embeddable
 public class ValidFor   {
+  @Column
   @JsonProperty("startDateTime")
   private OffsetDateTime startDateTime = null;
 
+  @Column
   @JsonProperty("endDateTime")
   private OffsetDateTime endDateTime = null;
 

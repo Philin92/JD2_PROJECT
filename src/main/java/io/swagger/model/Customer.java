@@ -15,6 +15,8 @@ import io.swagger.model.ValidFor;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -23,48 +25,62 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
-
+@Entity
 public class Customer   {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @JsonProperty("id")
   private Long id = null;
 
+  @Column
   @JsonProperty("href")
   private String href = null;
 
+  @Column
   @JsonProperty("name")
   private String name = null;
 
+  @Column
   @JsonProperty("status")
   private String status = null;
 
+  @Column
   @JsonProperty("description")
   private String description = null;
 
+  @Embedded
   @JsonProperty("validFor")
   private ValidFor validFor = null;
 
+  @Column
   @JsonProperty("customerRank")
   private String customerRank = null;
 
+  @ManyToOne(cascade = CascadeType.ALL)
   @JsonProperty("relatedParty")
   private Reference relatedParty = null;
 
+  @Transient
   @JsonProperty("characteristic")
   @Valid
   private List<Characteristic> characteristic = null;
 
+  @Transient
   @JsonProperty("contactMedium")
   @Valid
   private List<ContactMedium> contactMedium = null;
 
+  @Transient
   @JsonProperty("customerAccount")
   @Valid
   private List<CustomerAccount> customerAccount = null;
 
+  @Transient
   @JsonProperty("customerCreditProfile")
   @Valid
   private List<CustomerCreditProfile> customerCreditProfile = null;
 
+  @Transient
   @JsonProperty("paymentMean")
   @Valid
   private List<PaymentMean> paymentMean = null;
