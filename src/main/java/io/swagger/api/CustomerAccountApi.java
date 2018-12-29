@@ -31,7 +31,7 @@ public interface CustomerAccountApi {
         @ApiResponse(code = 201, message = "CustomerAccount", response = CustomerAccount.class) })
     @RequestMapping(value = "/customerAccount",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        /*consumes = { "application/json" },*/
         method = RequestMethod.POST)
     ResponseEntity<CustomerAccount> customerAccountCreate(@ApiParam(value = "" ,required=true )  @Valid @RequestBody CustomerAccount customerAccount);
 
@@ -41,7 +41,7 @@ public interface CustomerAccountApi {
         @ApiResponse(code = 204, message = "Success") })
     @RequestMapping(value = "/customerAccount/{customerAccountId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        /*consumes = { "application/json" },*/
         method = RequestMethod.DELETE)
     ResponseEntity<Void> customerAccountDelete(@ApiParam(value = "",required=true) @PathVariable("customerAccountId") String customerAccountId);
 
@@ -61,7 +61,7 @@ public interface CustomerAccountApi {
         @ApiResponse(code = 200, message = "CustomerAccount", response = CustomerAccount.class) })
     @RequestMapping(value = "/customerAccount/{customerAccountId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        /*consumes = { "application/json" },*/
         method = RequestMethod.GET)
     ResponseEntity<CustomerAccount> customerAccountGet(@ApiParam(value = "",required=true) @PathVariable("customerAccountId") String customerAccountId,@ApiParam(value = "") @Valid @RequestParam(value = "fields", required = false) String fields);
 
@@ -71,7 +71,7 @@ public interface CustomerAccountApi {
         @ApiResponse(code = 200, message = "Success CustomerAccount", response = CustomerAccount.class) })
     @RequestMapping(value = "/customerAccount/{customerAccountId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        /*consumes = { "application/json" },*/
         method = RequestMethod.PATCH)
     ResponseEntity<CustomerAccount> customerAccountPatch(@ApiParam(value = "",required=true) @PathVariable("customerAccountId") String customerAccountId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody CustomerAccount customerAccount);
 
@@ -81,7 +81,7 @@ public interface CustomerAccountApi {
         @ApiResponse(code = 201, message = "Success CustomerAccount", response = CustomerAccount.class) })
     @RequestMapping(value = "/customerAccount/{customerAccountId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        /*consumes = { "application/json" },*/
         method = RequestMethod.PUT)
     ResponseEntity<CustomerAccount> customerAccountUpdate(@ApiParam(value = "",required=true) @PathVariable("customerAccountId") String customerAccountId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody CustomerAccount customerAccount);
 

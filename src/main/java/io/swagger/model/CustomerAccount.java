@@ -1,6 +1,8 @@
 package io.swagger.model;
 
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -63,7 +65,7 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountTaxExemption")
   @Valid
-  /*@Transient*/
+  @Transient
   private List<CustomerAccountTaxExemption> customerAccountTaxExemption = null;
 
   @OneToMany(
@@ -73,7 +75,7 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountRelationship")
   @Valid
-  /*@Transient*/
+  @Transient
   private List<CustomerAccountRelationship> customerAccountRelationship = null;
 
   @OneToMany(
@@ -83,7 +85,7 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("contact")
   @Valid
-  /*@Transient*/
+  @Transient
   private List<Contact> contact = null;
 
   @ManyToOne(cascade = CascadeType.ALL)
@@ -96,7 +98,7 @@ public class CustomerAccount   {
   )
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountBalance")
-  /*@Transient*/
+  @Transient
   private List<CustomerAccountBalance> customerAccountBalance = null;
 
   @OneToMany(
@@ -105,7 +107,7 @@ public class CustomerAccount   {
   )
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("paymentPlan")
-  /*@Transient*/
+  @Transient
   private List<PaymentPlan> paymentPlan = null;
 
   @Column

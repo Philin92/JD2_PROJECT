@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class BaseDaoImpl<T> {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    SessionFactory sessionFactory;
 
     public abstract List<T> find();
 
@@ -20,6 +20,6 @@ public abstract class BaseDaoImpl<T> {
     }
 
     Session openSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 }

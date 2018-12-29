@@ -1,3 +1,4 @@
-/target
-/.swagger-codegen
+.idea/
+.swagger-codegen/
+target/
 .swagger-codegen-ignore
