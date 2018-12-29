@@ -19,13 +19,7 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
 @Entity
-public class CustomerAccountBalance   {
-  //TODO: Анологично с id
-  @Id
-  @GeneratedValue(generator = "UUID")
-  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-  @JsonProperty("id")
-  private String id;
+public class CustomerAccountBalance extends BasePojo {
 
   @Column
   @JsonProperty("type")
@@ -42,14 +36,6 @@ public class CustomerAccountBalance   {
   @Column
   @JsonProperty("status")
   private String status = null;
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
 
   public CustomerAccountBalance type(String type) {
     this.type = type;

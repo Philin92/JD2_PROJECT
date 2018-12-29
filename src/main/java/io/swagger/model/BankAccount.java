@@ -20,8 +20,8 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
 
 @Entity
-public class BankAccount   {
-  @Id
+public class BankAccount extends BasePojo {
+  @Column
   @JsonProperty("bIC")
   private String bIC = null;
   @Column

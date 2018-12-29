@@ -32,7 +32,7 @@ public class Medium   {
   @JsonProperty("emailAddress")
   private String emailAddress = null;
 
-  @Column
+  @Column(name = "mediumType")
   @JsonProperty("type")
   private String type = null;
 
