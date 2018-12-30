@@ -45,6 +45,15 @@ public class CustomerAccountDaoImpl<T> extends BaseDaoImpl {
         return (T) openSession().get(CustomerAccount.class,id);
     }
 
+    public CustomerAccount update(Serializable id,CustomerAccount updateAccount) {
+
+        log.info("Call update(): ");
+        updateAccount.setId((Long) id);
+        openSession().saveOrUpdate(updateAccount);
+
+        return updateAccount;
+    }
+
     public void save(T item) {
         openSession().saveOrUpdate(item);
     }

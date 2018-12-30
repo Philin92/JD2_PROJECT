@@ -1,6 +1,7 @@
 package io.swagger.services;
 
 import io.swagger.dao.CustomerAccountDaoImpl;
+import io.swagger.model.CustomerAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -51,5 +52,11 @@ public class CustomerAccountServiceImpl<T> extends BaseServiceImpl {
     public T getById(Serializable id){
         log.info("get object by id: "+id);
         return customerAccountDao.getById(id);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW, value = "txManager")
+    public CustomerAccount update(Serializable id, CustomerAccount updateAccount){
+        log.info("update object with id: "+id);
+        return customerAccountDao.update(id, updateAccount);
     }
 }
