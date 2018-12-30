@@ -8,6 +8,9 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 
@@ -65,7 +68,8 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountTaxExemption")
   @Valid
-  @Transient
+  /*@Transient*/
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<CustomerAccountTaxExemption> customerAccountTaxExemption = null;
 
   @OneToMany(
@@ -75,7 +79,8 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountRelationship")
   @Valid
-  @Transient
+  /*@Transient*/
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<CustomerAccountRelationship> customerAccountRelationship = null;
 
   @OneToMany(
@@ -85,7 +90,8 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("contact")
   @Valid
-  @Transient
+  /*@Transient*/
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<Contact> contact = null;
 
   @ManyToOne(cascade = CascadeType.ALL)
@@ -98,7 +104,8 @@ public class CustomerAccount   {
   )
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountBalance")
-  @Transient
+  /*@Transient*/
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<CustomerAccountBalance> customerAccountBalance = null;
 
   @OneToMany(
@@ -107,7 +114,8 @@ public class CustomerAccount   {
   )
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("paymentPlan")
-  @Transient
+  /*@Transient*/
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<PaymentPlan> paymentPlan = null;
 
   @Column

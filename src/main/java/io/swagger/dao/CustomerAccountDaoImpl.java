@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,30 +25,27 @@ public class CustomerAccountDaoImpl<T> extends BaseDaoImpl {
     @Override
     public List find() {
 
-        log.info("Call find()");
+        log.info("Call find(): ");
         return openSession().createQuery("from CustomerAccount").list();
     }
 
-    public void createTestData(){
-
-        log.info("Call createTestData()");
+    @Override
+    public void deleteById(Serializable id) {
+        log.info("Call delete(): ");
         Session session = openSession();
-
-            session.saveOrUpdate(customerAccount("1"));
-            session.saveOrUpdate(customerAccount("2"));
-            session.saveOrUpdate(customerAccount("3"));
-
-            session.getTransaction().commit();
-
+        CustomerAccount customerAccount = session.get(CustomerAccount.class,id);
+        session.delete(customerAccount);
     }
 
-    private T customerAccount(String prefix){
-        CustomerAccount customerAccount = new CustomerAccount();
+    @SuppressWarnings("unchecked")
+    @Override
+    public T getById(Serializable id) {
 
-        customerAccount.setName("CustomerAccount"+prefix);
-        customerAccount.setDescription("Description"+prefix);
-        customerAccount.setCreditLimit("10000"+prefix);
+        log.info("Call getById(): ");
+        return (T) openSession().get(CustomerAccount.class,id);
+    }
 
-        return (T)customerAccount;
+    public void save(T item) {
+        openSession().saveOrUpdate(item);
     }
 }
