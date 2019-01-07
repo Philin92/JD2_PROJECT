@@ -2,11 +2,9 @@ package io.swagger.services.impl;
 
 import io.swagger.dao.impl.CustomerAccountHibernateDaoImpl;
 import io.swagger.dao.interfaces.BaseHibernateDao;
-import io.swagger.dao.interfaces.CustomerAccountDao;
 import io.swagger.model.CustomerAccount;
 import io.swagger.services.interfaces.CustomerAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

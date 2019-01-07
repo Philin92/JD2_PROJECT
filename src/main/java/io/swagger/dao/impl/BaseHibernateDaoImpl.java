@@ -3,6 +3,7 @@ package io.swagger.dao.impl;
 import io.swagger.dao.interfaces.BaseHibernateDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -58,5 +59,12 @@ public abstract class BaseHibernateDaoImpl<T, PK extends Serializable> implement
     }
 
     @Override
-    public abstract T update(PK id, T entity);
+    public abstract T update(PK id, T updateEntity);/*{
+        log.info("Call update(): ");
+        T entity = getById(id);
+        BeanUtils.copyProperties(updateEntity,entity);
+        saveOrUpdate(entity);
+
+        return entity;
+    }*/
 }

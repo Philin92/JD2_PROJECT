@@ -328,7 +328,19 @@ public class CustomerAccount   {
   }
 
   public void setCustomerAccountTaxExemption(List<CustomerAccountTaxExemption> customerAccountTaxExemption) {
-    this.customerAccountTaxExemption = customerAccountTaxExemption;
+
+    if(this.customerAccountTaxExemption==null){
+      this.customerAccountTaxExemption = customerAccountTaxExemption;
+    }
+    else{
+      this.customerAccountTaxExemption.clear();
+      if(customerAccountTaxExemption!=null) {
+        this.customerAccountTaxExemption.addAll(customerAccountTaxExemption);
+      }
+    }
+
+    /*this.customerAccountTaxExemption = customerAccountTaxExemption;*/
+
   }
 
   public CustomerAccount customerAccountRelationship(List<CustomerAccountRelationship> customerAccountRelationship) {
@@ -357,7 +369,18 @@ public class CustomerAccount   {
   }
 
   public void setCustomerAccountRelationship(List<CustomerAccountRelationship> customerAccountRelationship) {
-    this.customerAccountRelationship = customerAccountRelationship;
+    if(this.customerAccountRelationship==null) {
+      this.customerAccountRelationship = customerAccountRelationship;
+    }
+    else {
+      this.customerAccountRelationship.clear();
+      if(customerAccountRelationship!=null) {
+        this.customerAccountRelationship.addAll(customerAccountRelationship);
+      }
+    }
+
+    /*this.customerAccountRelationship = customerAccountRelationship;*/
+
   }
 
   public CustomerAccount contact(List<Contact> contact) {
@@ -386,7 +409,18 @@ public class CustomerAccount   {
   }
 
   public void setContact(List<Contact> contact) {
-    this.contact = contact;
+    if(this.contact==null) {
+      this.contact = contact;
+    }
+    else {
+      this.contact.clear();
+      if(contact!=null){
+        this.contact.addAll(contact);
+      }
+    }
+
+   /* this.contact = contact;*/
+
   }
 
   public CustomerAccount customer(CustomerRef customer) {
@@ -436,7 +470,18 @@ public class CustomerAccount   {
   }
 
   public void setCustomerAccountBalance(List<CustomerAccountBalance> customerAccountBalance) {
-    this.customerAccountBalance = customerAccountBalance;
+    if(this.customerAccountBalance==null) {
+      this.customerAccountBalance = customerAccountBalance;
+    }
+    else {
+      this.customerAccountBalance.clear();
+      if(customerAccountBalance!=null) {
+        this.customerAccountBalance.addAll(customerAccountBalance);
+      }
+    }
+
+    /*this.customerAccountBalance = customerAccountBalance;*/
+
   }
 
   public CustomerAccount paymentPlan(List<PaymentPlan> paymentPlan) {
@@ -465,7 +510,18 @@ public class CustomerAccount   {
   }
 
   public void setPaymentPlan(List<PaymentPlan> paymentPlan) {
-    this.paymentPlan = paymentPlan;
+    if(this.paymentPlan==null) {
+      this.paymentPlan = paymentPlan;
+    }
+    else {
+      this.paymentPlan.clear();
+      if(paymentPlan!=null) {
+        this.paymentPlan.addAll(paymentPlan);
+      }
+    }
+
+    /*this.paymentPlan = paymentPlan;*/
+
   }
 
   public CustomerAccount lastModified(OffsetDateTime lastModified) {

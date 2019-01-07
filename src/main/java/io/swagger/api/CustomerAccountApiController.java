@@ -152,6 +152,7 @@ public class CustomerAccountApiController implements CustomerAccountApi {
             try {
                 Long id = Long.valueOf(customerAccountId);
                 CustomerAccount update = customerAccount("update");
+                update.setId(id);
                 return new ResponseEntity<CustomerAccount>(
                         customerAccountHibService.update(id,update),HttpStatus.OK
                 );

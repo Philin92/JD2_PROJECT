@@ -3,6 +3,7 @@ package io.swagger.services;
 import io.swagger.configuration.HibernateXMLConfTest;
 import io.swagger.model.CustomerAccount;
 import io.swagger.services.impl.CustomerAccountHibServiceImpl;
+import io.swagger.services.interfaces.CustomerAccountService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -26,7 +27,7 @@ import static org.junit.Assert.*;
         classes = {HibernateXMLConfTest.class},
         loader = AnnotationConfigContextLoader.class)
 @Transactional
-public class CustomerAccountServiceImplTest {
+public class CustomerAccountHibServiceImplTest {
 
     @MockBean
     com.fasterxml.jackson.databind.ObjectMapper objectMapper;
@@ -35,7 +36,7 @@ public class CustomerAccountServiceImplTest {
     HttpServletRequest httpServletRequest;
 
     @Resource
-    CustomerAccountHibServiceImpl objUnderTest;
+    CustomerAccountService objUnderTest;
 
     public static CustomerAccount customerAccount(String prefix){
         CustomerAccount customerAccount = new CustomerAccount();
@@ -52,8 +53,8 @@ public class CustomerAccountServiceImplTest {
     @After
     public void tearDown() throws Exception{}
 
-    @Test
     @Ignore
+    @Test
     public void list(){
 
         CustomerAccount customerAccount1 = customerAccount("1");
@@ -62,5 +63,8 @@ public class CustomerAccountServiceImplTest {
         Serializable id = customerAccount1.getId();
         assertNotNull(id);
 
+        List<CustomerAccount> customerAccounts = objUnderTest.findList();
+        assertEquals(1,customerAccounts.size());
+        assertEquals(id,customerAccounts.get(0).getId());
     }
 }
