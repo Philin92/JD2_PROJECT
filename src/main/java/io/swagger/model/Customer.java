@@ -301,7 +301,14 @@ public class Customer   {
   }
 
   public void setCharacteristic(List<Characteristic> characteristic) {
-    this.characteristic = characteristic;
+    if(this.characteristic==null) {
+      this.characteristic = characteristic;
+    }else {
+      this.characteristic.clear();
+      if(characteristic!=null){
+        this.characteristic.addAll(characteristic);
+      }
+    }
   }
 
   public Customer contactMedium(List<ContactMedium> contactMedium) {
@@ -330,7 +337,14 @@ public class Customer   {
   }
 
   public void setContactMedium(List<ContactMedium> contactMedium) {
-    this.contactMedium = contactMedium;
+    if(this.contactMedium==null) {
+      this.contactMedium = contactMedium;
+    }else {
+      this.contactMedium.clear();
+      if(contactMedium!=null){
+        this.contactMedium.addAll(contactMedium);
+      }
+    }
   }
 
   public Customer customerAccount(List<CustomerAccount> customerAccount) {
@@ -359,7 +373,14 @@ public class Customer   {
   }
 
   public void setCustomerAccount(List<CustomerAccount> customerAccount) {
-    this.customerAccount = customerAccount;
+    if(this.customerAccount==null) {
+      this.customerAccount = customerAccount;
+    }else {
+      this.customerAccount.clear();
+      if(customerAccount!=null){
+        this.customerAccount.addAll(customerAccount);
+      }
+    }
   }
 
   public Customer customerCreditProfile(List<CustomerCreditProfile> customerCreditProfile) {
@@ -388,7 +409,14 @@ public class Customer   {
   }
 
   public void setCustomerCreditProfile(List<CustomerCreditProfile> customerCreditProfile) {
-    this.customerCreditProfile = customerCreditProfile;
+    if(this.customerCreditProfile==null) {
+      this.customerCreditProfile = customerCreditProfile;
+    }else {
+      this.customerCreditProfile.clear();
+      if(customerCreditProfile!=null){
+        this.customerCreditProfile.addAll(customerCreditProfile);
+      }
+    }
   }
 
   public Customer paymentMean(List<PaymentMean> paymentMean) {
@@ -417,7 +445,14 @@ public class Customer   {
   }
 
   public void setPaymentMean(List<PaymentMean> paymentMean) {
-    this.paymentMean = paymentMean;
+    if(this.paymentMean==null) {
+      this.paymentMean = paymentMean;
+    }else {
+      this.paymentMean.clear();
+      if(paymentMean!=null){
+        this.paymentMean.addAll(paymentMean);
+      }
+    }
   }
 
 
