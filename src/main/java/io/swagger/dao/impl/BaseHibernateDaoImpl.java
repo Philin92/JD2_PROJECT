@@ -33,6 +33,8 @@ public abstract class BaseHibernateDaoImpl<T, PK extends Serializable> implement
     @Override
     public void saveOrUpdate(T entity) {
         log.info("Call saveOrUpdate(): ");
+        System.out.println(getPersistentClass().getName());
+        System.out.println(getPersistentClass().getSimpleName());
         openSession().saveOrUpdate(entity);
     }
 
@@ -59,12 +61,12 @@ public abstract class BaseHibernateDaoImpl<T, PK extends Serializable> implement
     }
 
     @Override
-    public abstract T update(PK id, T updateEntity);/*{
+    public T update(PK id, T updateEntity){
         log.info("Call update(): ");
         T entity = getById(id);
         BeanUtils.copyProperties(updateEntity,entity);
         saveOrUpdate(entity);
 
         return entity;
-    }*/
+    }
 }

@@ -14,6 +14,9 @@ import io.swagger.model.Reference;
 import io.swagger.model.ValidFor;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -67,6 +70,7 @@ public class Customer   {
   @JoinColumn(name = "customer_id")
   @JsonProperty("characteristic")
   @Valid
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<Characteristic> characteristic = null;
 
   @OneToMany(
@@ -76,6 +80,7 @@ public class Customer   {
   @JoinColumn(name = "customer_id")
   @JsonProperty("contactMedium")
   @Valid
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<ContactMedium> contactMedium = null;
 
   @OneToMany(
@@ -85,6 +90,7 @@ public class Customer   {
   @JoinColumn(name = "customer_id")
   @JsonProperty("customerAccount")
   @Valid
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<CustomerAccount> customerAccount = null;
 
   @OneToMany(
@@ -94,6 +100,7 @@ public class Customer   {
   @JoinColumn(name = "customer_id")
   @JsonProperty("customerCreditProfile")
   @Valid
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<CustomerCreditProfile> customerCreditProfile = null;
 
   @OneToMany(
@@ -103,6 +110,7 @@ public class Customer   {
   @JoinColumn(name = "customer_id")
   @JsonProperty("paymentMean")
   @Valid
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<PaymentMean> paymentMean = null;
 
   public Customer id(Long id) {

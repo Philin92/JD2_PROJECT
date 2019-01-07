@@ -21,14 +21,14 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
 @Entity
-public class CustomerAccountTaxExemption   {
+public class CustomerAccountTaxExemption extends BasePojo {
 
   @JsonProperty("issuingJurisdiction")
   @Column
   private String issuingJurisdiction = null;
 
-  @Id
   @JsonProperty("certificateNumber")
+  @Column
   private String certificateNumber = null;
 
   @JsonProperty("reason")

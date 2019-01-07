@@ -31,7 +31,7 @@ public interface CustomerApi {
         @ApiResponse(code = 201, message = "Customer", response = Customer.class) })
     @RequestMapping(value = "/customer",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<Customer> customerCreate(@ApiParam(value = "" ,required=true )  @Valid @RequestBody Customer customer);
 
@@ -41,7 +41,7 @@ public interface CustomerApi {
         @ApiResponse(code = 204, message = "Success") })
     @RequestMapping(value = "/customer/{customerId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.DELETE)
     ResponseEntity<Void> customerDelete(@ApiParam(value = "",required=true) @PathVariable("customerId") String customerId);
 
@@ -51,7 +51,7 @@ public interface CustomerApi {
         @ApiResponse(code = 200, message = "List of Customer", response = Customer.class, responseContainer = "List") })
     @RequestMapping(value = "/customer",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<List<Customer>> customerFind(@ApiParam(value = "") @Valid @RequestParam(value = "fields", required = false) String fields);
 
@@ -61,7 +61,7 @@ public interface CustomerApi {
         @ApiResponse(code = 200, message = "Customer", response = Customer.class) })
     @RequestMapping(value = "/customer/{customerId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<Customer> customerGet(@ApiParam(value = "",required=true) @PathVariable("customerId") String customerId,@ApiParam(value = "") @Valid @RequestParam(value = "fields", required = false) String fields);
 
@@ -71,7 +71,7 @@ public interface CustomerApi {
         @ApiResponse(code = 200, message = "Success Customer", response = Customer.class) })
     @RequestMapping(value = "/customer/{customerId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.PATCH)
     ResponseEntity<Customer> customerPatch(@ApiParam(value = "",required=true) @PathVariable("customerId") String customerId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody Customer customer);
 
@@ -81,7 +81,7 @@ public interface CustomerApi {
         @ApiResponse(code = 201, message = "Success Customer", response = Customer.class) })
     @RequestMapping(value = "/customer/{customerId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.PUT)
     ResponseEntity<Customer> customerUpdate(@ApiParam(value = "",required=true) @PathVariable("customerId") String customerId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody Customer customer);
 
