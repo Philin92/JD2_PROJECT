@@ -31,7 +31,7 @@ public interface PaymentMeanApi {
         @ApiResponse(code = 201, message = "PaymentMean", response = PaymentMean.class) })
     @RequestMapping(value = "/paymentMean",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<PaymentMean> paymentMeanCreate(@ApiParam(value = "" ,required=true )  @Valid @RequestBody PaymentMean paymentMean);
 
@@ -41,7 +41,7 @@ public interface PaymentMeanApi {
         @ApiResponse(code = 204, message = "Success") })
     @RequestMapping(value = "/paymentMean/{paymentMeanId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.DELETE)
     ResponseEntity<Void> paymentMeanDelete(@ApiParam(value = "",required=true) @PathVariable("paymentMeanId") String paymentMeanId);
 
@@ -51,7 +51,7 @@ public interface PaymentMeanApi {
         @ApiResponse(code = 200, message = "List of PaymentMean", response = PaymentMean.class, responseContainer = "List") })
     @RequestMapping(value = "/paymentMean",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<List<PaymentMean>> paymentMeanFind(@ApiParam(value = "") @Valid @RequestParam(value = "fields", required = false) String fields);
 
@@ -61,7 +61,7 @@ public interface PaymentMeanApi {
         @ApiResponse(code = 200, message = "PaymentMean", response = PaymentMean.class) })
     @RequestMapping(value = "/paymentMean/{paymentMeanId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<PaymentMean> paymentMeanGet(@ApiParam(value = "",required=true) @PathVariable("paymentMeanId") String paymentMeanId,@ApiParam(value = "") @Valid @RequestParam(value = "fields", required = false) String fields);
 
@@ -71,7 +71,7 @@ public interface PaymentMeanApi {
         @ApiResponse(code = 200, message = "Success PaymentMean", response = PaymentMean.class) })
     @RequestMapping(value = "/paymentMean/{paymentMeanId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.PATCH)
     ResponseEntity<PaymentMean> paymentMeanPatch(@ApiParam(value = "",required=true) @PathVariable("paymentMeanId") String paymentMeanId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody PaymentMean paymentMean);
 
@@ -81,7 +81,7 @@ public interface PaymentMeanApi {
         @ApiResponse(code = 201, message = "Success PaymentMean", response = PaymentMean.class) })
     @RequestMapping(value = "/paymentMean/{paymentMeanId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.PUT)
     ResponseEntity<PaymentMean> paymentMeanUpdate(@ApiParam(value = "",required=true) @PathVariable("paymentMeanId") String paymentMeanId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody PaymentMean paymentMean);
 
