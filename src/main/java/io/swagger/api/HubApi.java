@@ -31,7 +31,7 @@ public interface HubApi {
         @ApiResponse(code = 201, message = "Hub", response = Hub.class) })
     @RequestMapping(value = "/hub",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<Hub> hubCreate(@ApiParam(value = "" ,required=true )  @Valid @RequestBody Hub hub);
 
@@ -41,7 +41,7 @@ public interface HubApi {
         @ApiResponse(code = 204, message = "Success") })
     @RequestMapping(value = "/hub/{hubId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.DELETE)
     ResponseEntity<Void> hubDelete(@ApiParam(value = "",required=true) @PathVariable("hubId") String hubId);
 
@@ -51,7 +51,7 @@ public interface HubApi {
         @ApiResponse(code = 200, message = "List of Hub", response = Hub.class, responseContainer = "List") })
     @RequestMapping(value = "/hub",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<List<Hub>> hubFind();
 
@@ -61,7 +61,7 @@ public interface HubApi {
         @ApiResponse(code = 200, message = "Hub", response = Hub.class) })
     @RequestMapping(value = "/hub/{hubId}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
+        //consumes = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<Hub> hubGet(@ApiParam(value = "",required=true) @PathVariable("hubId") String hubId);
 

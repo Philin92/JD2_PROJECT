@@ -3,8 +3,10 @@ package io.swagger.api;
 import io.swagger.model.Hub;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
+import io.swagger.services.interfaces.HubService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,18 +33,40 @@ public class HubApiController implements HubApi {
 
     private final HttpServletRequest request;
 
+    @Autowired
+    private HubService hubService;
+
     @org.springframework.beans.factory.annotation.Autowired
     public HubApiController(ObjectMapper objectMapper, HttpServletRequest request) {
         this.objectMapper = objectMapper;
         this.request = request;
     }
 
+    private Hub hubInst(String prefix){
+
+        Hub hub  = new Hub();
+        hub.setQuery("Hub query: "+prefix);
+        hub.setCallback("Hub callback: "+prefix);
+
+        return hub;
+    }
+
     public ResponseEntity<Hub> hubCreate(@ApiParam(value = "" ,required=true )  @Valid @RequestBody Hub hub) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Hub>(objectMapper.readValue("{  \"query\" : \"query\",  \"callback\" : \"callback\",  \"id\" : \"id\"}", Hub.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
+                //return new ResponseEntity<Hub>(objectMapper.readValue("{  \"query\" : \"query\",  \"callback\" : \"callback\",  \"id\" : \"id\"}", Hub.class), HttpStatus.NOT_IMPLEMENTED);
+                hubService.create(List.of(
+                        hubInst("1"),
+                        hubInst("2"),
+                        hubInst("3"),
+                        hubInst("4"),
+                        hubInst("5")
+                ));
+
+                return new ResponseEntity<Hub>(HttpStatus.OK);
+
+            } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Hub>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -53,6 +77,12 @@ public class HubApiController implements HubApi {
 
     public ResponseEntity<Void> hubDelete(@ApiParam(value = "",required=true) @PathVariable("hubId") String hubId) {
         String accept = request.getHeader("Accept");
+        try {
+            hubService.deleteById(hubId);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
@@ -60,8 +90,11 @@ public class HubApiController implements HubApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Hub>>(objectMapper.readValue("[ {  \"query\" : \"query\",  \"callback\" : \"callback\",  \"id\" : \"id\"}, {  \"query\" : \"query\",  \"callback\" : \"callback\",  \"id\" : \"id\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
+                //return new ResponseEntity<List<Hub>>(objectMapper.readValue("[ {  \"query\" : \"query\",  \"callback\" : \"callback\",  \"id\" : \"id\"}, {  \"query\" : \"query\",  \"callback\" : \"callback\",  \"id\" : \"id\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<Hub>>(
+                        hubService.findList(),HttpStatus.OK
+                );
+            } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<List<Hub>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -74,8 +107,11 @@ public class HubApiController implements HubApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Hub>(objectMapper.readValue("{  \"query\" : \"query\",  \"callback\" : \"callback\",  \"id\" : \"id\"}", Hub.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
+                //return new ResponseEntity<Hub>(objectMapper.readValue("{  \"query\" : \"query\",  \"callback\" : \"callback\",  \"id\" : \"id\"}", Hub.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<Hub>(
+                        hubService.getById(hubId),HttpStatus.OK
+                );
+            } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Hub>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
