@@ -369,11 +369,11 @@ public class CustomerAccount   {
   }
 
   public void setCustomerAccountRelationship(List<CustomerAccountRelationship> customerAccountRelationship) {
-    if(this.customerAccountRelationship==null) {
+    if(this.customerAccountRelationship == null) {
       this.customerAccountRelationship = customerAccountRelationship;
     }
     else {
-      this.customerAccountRelationship.clear();
+        this.customerAccountRelationship.clear();
       if(customerAccountRelationship!=null) {
         this.customerAccountRelationship.addAll(customerAccountRelationship);
       }
@@ -413,7 +413,7 @@ public class CustomerAccount   {
       this.contact = contact;
     }
     else {
-      this.contact.clear();
+        this.contact.clear();
       if(contact!=null){
         this.contact.addAll(contact);
       }
@@ -474,7 +474,7 @@ public class CustomerAccount   {
       this.customerAccountBalance = customerAccountBalance;
     }
     else {
-      this.customerAccountBalance.clear();
+        this.customerAccountBalance.clear();
       if(customerAccountBalance!=null) {
         this.customerAccountBalance.addAll(customerAccountBalance);
       }
@@ -514,7 +514,7 @@ public class CustomerAccount   {
       this.paymentPlan = paymentPlan;
     }
     else {
-      this.paymentPlan.clear();
+        this.paymentPlan.clear();
       if(paymentPlan!=null) {
         this.paymentPlan.addAll(paymentPlan);
       }

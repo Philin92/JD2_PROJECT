@@ -22,7 +22,7 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-08T11:08:14.094+03:00")
 @Entity
-public class Contact   {
+public class Contact extends BasePojo  {
   @Column
   @JsonProperty("contactType")
   private String contactType = null;
@@ -31,7 +31,7 @@ public class Contact   {
   @JsonProperty("validFor")
   private ValidFor validFor = null;
 
-  @Id
+  @Column
   @JsonProperty("contactName")
   private String contactName = null;
 
@@ -159,7 +159,14 @@ public class Contact   {
   }
 
   public void setContactMedium(List<ContactMedium> contactMedium) {
-    this.contactMedium = contactMedium;
+    if(this.contactMedium==null) {
+      this.contactMedium = contactMedium;
+    }else{
+      this.contactMedium.clear();
+      if(contactMedium!=null){
+        this.contactMedium.addAll(contactMedium);
+      }
+    }
   }
 
   public Contact relatedParty(Reference relatedParty) {

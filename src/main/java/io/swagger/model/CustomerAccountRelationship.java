@@ -109,7 +109,14 @@ public class CustomerAccountRelationship extends BasePojo {
   }
 
   public void setCustomerAccount(List<CustomerAccountRef> customerAccount) {
-    this.customerAccount = customerAccount;
+    if(this.customerAccount == null) {
+      this.customerAccount = customerAccount;
+    }else {
+      this.customerAccount.clear();
+      if(customerAccount!=null){
+        this.customerAccount.addAll(customerAccount);
+      }
+    }
   }
 
 
