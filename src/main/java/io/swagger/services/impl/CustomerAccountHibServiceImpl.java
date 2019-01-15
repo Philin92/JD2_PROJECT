@@ -6,6 +6,7 @@ import io.swagger.model.CustomerAccount;
 import io.swagger.services.interfaces.CustomerAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -24,4 +25,9 @@ public class CustomerAccountHibServiceImpl
         this.cutomerAccountDao = (CustomerAccountHibernateDaoImpl) dao;
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW, value = "txManager")
+    public CustomerAccount patch(long id, CustomerAccount entity) {
+        return cutomerAccountDao.patch(id,entity);
+    }
 }

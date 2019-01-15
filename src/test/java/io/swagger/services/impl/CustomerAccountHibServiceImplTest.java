@@ -207,4 +207,50 @@ public class CustomerAccountHibServiceImplTest {
 
     }
 
+    @Test
+    public void patch(){
+
+        CustomerAccount customerAccount = customerAccount("F");
+        objUnderTest.saveOrUpdate(customerAccount);
+
+        Serializable id = customerAccount.getId();
+        assertNotNull(id);
+
+        CustomerAccount customerAccountPatch = new CustomerAccount();
+
+        customerAccountPatch.setName("CustomerAccount name: P");
+        customerAccountPatch.setDescription("Description: P");
+        customerAccountPatch.setCreditLimit("Credit limit: P");
+        customerAccountPatch.setPin("Pin: F");
+
+        customerAccountPatch.setCustomerAccountRelationship(List.of(
+                customerAccountRelationship("1"),
+                customerAccountRelationship("2"),
+                customerAccountRelationship("3")
+        ));
+
+        customerAccountPatch.setContact(List.of(
+                contact("1P"),
+                contact("2P"),
+                contact("3P")
+        ));
+
+        CustomerRef customerRef = new CustomerRef();
+        customerRef.setName("CustomerRef name");
+        customerRef.setHref("www.href.ru");
+        customerRef.setDescription("Description");
+
+        customerAccountPatch.setCustomerRef(customerRef);
+
+
+        objUnderTest.patch((Long) id,customerAccountPatch);
+
+        CustomerAccount patchedCustomerAccount = objUnderTest.getById(id);
+        assertNotNull(patchedCustomerAccount);
+        assertEquals(patchedCustomerAccount.getStatus(),"Status: F");
+        assertEquals(patchedCustomerAccount.getName(),"CustomerAccount name: P");
+        assertTrue(patchedCustomerAccount.getContact().size()==3);
+        assertEquals(patchedCustomerAccount.getContact().get(0).getContactName(),"ContactName: 1P");
+    }
+
 }
