@@ -27,45 +27,7 @@ public class CustomerAccountHibernateDaoImpl extends BaseHibernateDaoImpl<Custom
 
         log.info("Call update(): ");
 
-        Session session = openSession();
-
-        CustomerAccount entity = session.find(CustomerAccount.class,id);
-
-        /*List<CustomerAccountTaxExemption> taxExemptions = entity.getCustomerAccountTaxExemption();
-        if(taxExemptions!=null) {
-            for(CustomerAccountTaxExemption c:taxExemptions){
-                session.delete(c);
-            }
-        }
-
-        List<CustomerAccountRelationship> relationships = entity.getCustomerAccountRelationship();
-        if(relationships!=null){
-            for(CustomerAccountRelationship c:relationships){
-                session.delete(c);
-            }
-        }
-
-        List<Contact> contacts = entity.getContact();
-        if(contacts!=null){
-            for(Contact c: contacts) {
-                session.delete(c);
-            }
-        }
-
-        List<CustomerAccountBalance> balances = entity.getCustomerAccountBalance();
-        if(balances!=null){
-            for(CustomerAccountBalance c: balances) {
-                session.delete(c);
-            }
-        }
-
-        List<PaymentPlan> plans = entity.getPaymentPlan();
-        if(plans!=null){
-            for(PaymentPlan p: plans) {
-                session.delete(p);
-            }
-        }*/
-
+        CustomerAccount entity = openSession().find(CustomerAccount.class,id);
         BeanUtils.copyProperties(updateEntity,entity);
 
         saveOrUpdate(entity);

@@ -7,6 +7,7 @@ import io.swagger.annotations.*;
 import io.swagger.services.interfaces.PaymentMeanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,13 +67,9 @@ public class PaymentMeanApiController implements PaymentMeanApi {
         if (accept != null && accept.contains("application/json")) {
             try {
                 //return new ResponseEntity<PaymentMean>(objectMapper.readValue("{  \"bankAccount\" : {    \"accountHolder\" : \"accountHolder\",    \"iBAN\" : \"iBAN\",    \"domiciliation\" : \"domiciliation\",    \"bIC\" : \"bIC\"  },  \"validFor\" : {    \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",    \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"  },  \"name\" : \"name\",  \"id\" : 2,  \"href\" : \"href\",  \"type\" : \"type\",  \"relatedParty\" : {    \"role\" : \"role\",    \"name\" : \"name\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"creditCard\" : {    \"number\" : \"number\",    \"creditCardHolder\" : \"creditCardHolder\",    \"type\" : \"type\",    \"expirationDate\" : \"2000-01-23T04:56:07.000+00:00\"  }}", PaymentMean.class), HttpStatus.NOT_IMPLEMENTED);
-                paymentMeanService.create(List.of(
-                        paymentMeanInst("1"),
-                        paymentMeanInst("2"),
-                        paymentMeanInst("3"),
-                        paymentMeanInst("4"),
-                        paymentMeanInst("5")
-                ));
+                PaymentMean newPaymentMean = new PaymentMean();
+                BeanUtils.copyProperties(paymentMean, newPaymentMean);
+                paymentMeanService.saveOrUpdate(newPaymentMean);
 
                 return new ResponseEntity<PaymentMean>(HttpStatus.OK);
 
@@ -136,8 +133,15 @@ public class PaymentMeanApiController implements PaymentMeanApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<PaymentMean>(objectMapper.readValue("{  \"bankAccount\" : {    \"accountHolder\" : \"accountHolder\",    \"iBAN\" : \"iBAN\",    \"domiciliation\" : \"domiciliation\",    \"bIC\" : \"bIC\"  },  \"validFor\" : {    \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",    \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"  },  \"name\" : \"name\",  \"id\" : 2,  \"href\" : \"href\",  \"type\" : \"type\",  \"relatedParty\" : {    \"role\" : \"role\",    \"name\" : \"name\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"creditCard\" : {    \"number\" : \"number\",    \"creditCardHolder\" : \"creditCardHolder\",    \"type\" : \"type\",    \"expirationDate\" : \"2000-01-23T04:56:07.000+00:00\"  }}", PaymentMean.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
+                Long id = Long.valueOf(paymentMeanId);
+                PaymentMean patch = new PaymentMean();
+                BeanUtils.copyProperties(paymentMean,patch);
+
+                return new ResponseEntity<PaymentMean>(
+                        paymentMeanService.patch(id,patch),HttpStatus.OK
+                );
+                //return new ResponseEntity<PaymentMean>(objectMapper.readValue("{  \"bankAccount\" : {    \"accountHolder\" : \"accountHolder\",    \"iBAN\" : \"iBAN\",    \"domiciliation\" : \"domiciliation\",    \"bIC\" : \"bIC\"  },  \"validFor\" : {    \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",    \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"  },  \"name\" : \"name\",  \"id\" : 2,  \"href\" : \"href\",  \"type\" : \"type\",  \"relatedParty\" : {    \"role\" : \"role\",    \"name\" : \"name\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"creditCard\" : {    \"number\" : \"number\",    \"creditCardHolder\" : \"creditCardHolder\",    \"type\" : \"type\",    \"expirationDate\" : \"2000-01-23T04:56:07.000+00:00\"  }}", PaymentMean.class), HttpStatus.NOT_IMPLEMENTED);
+            } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<PaymentMean>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -152,8 +156,10 @@ public class PaymentMeanApiController implements PaymentMeanApi {
             try {
                 //return new ResponseEntity<PaymentMean>(objectMapper.readValue("{  \"bankAccount\" : {    \"accountHolder\" : \"accountHolder\",    \"iBAN\" : \"iBAN\",    \"domiciliation\" : \"domiciliation\",    \"bIC\" : \"bIC\"  },  \"validFor\" : {    \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",    \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"  },  \"name\" : \"name\",  \"id\" : 2,  \"href\" : \"href\",  \"type\" : \"type\",  \"relatedParty\" : {    \"role\" : \"role\",    \"name\" : \"name\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"creditCard\" : {    \"number\" : \"number\",    \"creditCardHolder\" : \"creditCardHolder\",    \"type\" : \"type\",    \"expirationDate\" : \"2000-01-23T04:56:07.000+00:00\"  }}", PaymentMean.class), HttpStatus.NOT_IMPLEMENTED);
                 Long id = Long.valueOf(paymentMeanId);
-                PaymentMean update = paymentMeanInst("update");
+                PaymentMean update = new PaymentMean();
+                BeanUtils.copyProperties(paymentMean,update);
                 update.setId(id);
+
                 return new ResponseEntity<PaymentMean>(
                         paymentMeanService.update(id,update),HttpStatus.OK
                 );
