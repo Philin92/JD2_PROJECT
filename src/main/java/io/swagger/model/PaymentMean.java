@@ -9,6 +9,7 @@ import io.swagger.model.BankAccount;
 import io.swagger.model.CreditCard;
 import io.swagger.model.Reference;
 import io.swagger.model.ValidFor;
+import org.hibernate.annotations.Cascade;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -43,15 +44,18 @@ public class PaymentMean   {
   @JsonProperty("type")
   private String type = null;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
+  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
   @JsonProperty("bankAccount")
   private BankAccount bankAccount = null;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
+  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
   @JsonProperty("relatedParty")
   private Reference relatedParty = null;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
+  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
   @JsonProperty("creditCard")
   private CreditCard creditCard = null;
 
