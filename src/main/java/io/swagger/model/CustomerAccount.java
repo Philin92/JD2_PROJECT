@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.threeten.bp.OffsetDateTime;
@@ -31,35 +32,35 @@ public class CustomerAccount   {
 
   @JsonProperty("href")
   @Column
-  private String href = null;
+  private String href = null;//9
 
   @JsonProperty("name")
   @Column
-  private String name = null;
+  private String name = null;//11
 
   @JsonProperty("description")
   @Column
-  private String description = null;
+  private String description = null;//8
 
   @JsonProperty("status")
   @Column
-  private String status = null;
+  private String status = null;//15
 
   @JsonProperty("accountType")
   @Column
-  private String accountType = null;
+  private String accountType = null;//1
 
   @JsonProperty("creditLimit")
   @Column
-  private String creditLimit = null;
+  private String creditLimit = null;//3
 
   @JsonProperty("pin")
   @Column
-  private String pin = null;
+  private String pin = null;//13
 
   @JsonProperty("receivableBalance")
   @Column
-  private Float receivableBalance = null;
+  private Float receivableBalance = null;//14
 
   @OneToMany(
           cascade = CascadeType.ALL,
@@ -68,9 +69,8 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountTaxExemption")
   @Valid
-  /*@Transient*/
   @LazyCollection(LazyCollectionOption.FALSE)
-  private List<CustomerAccountTaxExemption> customerAccountTaxExemption = null;
+  private List<CustomerAccountTaxExemption> customerAccountTaxExemption = null;//6
 
   @OneToMany(
           cascade = CascadeType.ALL,
@@ -79,9 +79,8 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountRelationship")
   @Valid
-  /*@Transient*/
   @LazyCollection(LazyCollectionOption.FALSE)
-  private List<CustomerAccountRelationship> customerAccountRelationship = null;
+  private List<CustomerAccountRelationship> customerAccountRelationship = null;//5
 
   @OneToMany(
           cascade = CascadeType.ALL,
@@ -90,13 +89,13 @@ public class CustomerAccount   {
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("contact")
   @Valid
-  /*@Transient*/
   @LazyCollection(LazyCollectionOption.FALSE)
-  private List<Contact> contact = null;
+  private List<Contact> contact = null;//2
 
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JsonProperty("customerRef")
-  private CustomerRef customerRef = null; //ИЗМЕНИЛ НАЗВАНИЕ ССЫЛКИ, С customer НА customerRef
+  @ManyToOne
+  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+  @JsonProperty("customerRef")//7
+  private CustomerRef customerRef = null;
 
   @OneToMany(
           cascade = CascadeType.ALL,
@@ -104,9 +103,8 @@ public class CustomerAccount   {
   )
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("customerAccountBalance")
-  /*@Transient*/
   @LazyCollection(LazyCollectionOption.FALSE)
-  private List<CustomerAccountBalance> customerAccountBalance = null;
+  private List<CustomerAccountBalance> customerAccountBalance = null;//4
 
   @OneToMany(
           cascade = CascadeType.ALL,
@@ -114,13 +112,12 @@ public class CustomerAccount   {
   )
   @JoinColumn(name = "customerAccount_id")
   @JsonProperty("paymentPlan")
-  /*@Transient*/
   @LazyCollection(LazyCollectionOption.FALSE)
-  private List<PaymentPlan> paymentPlan = null;
+  private List<PaymentPlan> paymentPlan = null;//12
 
   @Column
   @JsonProperty("lastModified")
-  private OffsetDateTime lastModified = null;
+  private OffsetDateTime lastModified = null;//10
 
   public CustomerAccount id(Long id) {
     this.id = id;
@@ -338,9 +335,6 @@ public class CustomerAccount   {
         this.customerAccountTaxExemption.addAll(customerAccountTaxExemption);
       }
     }
-
-    /*this.customerAccountTaxExemption = customerAccountTaxExemption;*/
-
   }
 
   public CustomerAccount customerAccountRelationship(List<CustomerAccountRelationship> customerAccountRelationship) {
@@ -378,9 +372,6 @@ public class CustomerAccount   {
         this.customerAccountRelationship.addAll(customerAccountRelationship);
       }
     }
-
-    /*this.customerAccountRelationship = customerAccountRelationship;*/
-
   }
 
   public CustomerAccount contact(List<Contact> contact) {
@@ -418,9 +409,6 @@ public class CustomerAccount   {
         this.contact.addAll(contact);
       }
     }
-
-   /* this.contact = contact;*/
-
   }
 
   public CustomerAccount customer(CustomerRef customer) {
@@ -479,9 +467,6 @@ public class CustomerAccount   {
         this.customerAccountBalance.addAll(customerAccountBalance);
       }
     }
-
-    /*this.customerAccountBalance = customerAccountBalance;*/
-
   }
 
   public CustomerAccount paymentPlan(List<PaymentPlan> paymentPlan) {
@@ -519,9 +504,6 @@ public class CustomerAccount   {
         this.paymentPlan.addAll(paymentPlan);
       }
     }
-
-    /*this.paymentPlan = paymentPlan;*/
-
   }
 
   public CustomerAccount lastModified(OffsetDateTime lastModified) {

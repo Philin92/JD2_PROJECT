@@ -6,6 +6,7 @@ import io.swagger.annotations.*;
 import io.swagger.services.interfaces.HubService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,13 +57,10 @@ public class HubApiController implements HubApi {
         if (accept != null && accept.contains("application/json")) {
             try {
                 //return new ResponseEntity<Hub>(objectMapper.readValue("{  \"query\" : \"query\",  \"callback\" : \"callback\",  \"id\" : \"id\"}", Hub.class), HttpStatus.NOT_IMPLEMENTED);
-                hubService.create(List.of(
-                        hubInst("1"),
-                        hubInst("2"),
-                        hubInst("3"),
-                        hubInst("4"),
-                        hubInst("5")
-                ));
+
+                Hub newHub = new Hub();
+                BeanUtils.copyProperties(hub, newHub);
+                hubService.saveOrUpdate(newHub);
 
                 return new ResponseEntity<Hub>(HttpStatus.OK);
 

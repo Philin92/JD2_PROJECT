@@ -10,6 +10,9 @@ import io.swagger.model.Reference;
 import io.swagger.model.ValidFor;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -46,6 +49,7 @@ public class Contact extends BasePojo  {
   @JoinColumn(name = "contakt_name")
   @JsonProperty("contactMedium")
   @Valid
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<ContactMedium> contactMedium = null;
 
   @ManyToOne(cascade = CascadeType.ALL)

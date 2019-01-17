@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -40,6 +42,7 @@ public class CustomerAccountRelationship extends BasePojo {
   @JoinColumn(name = "customerAccountRelationship_id")
   @JsonProperty("customerAccount")
   @Valid
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<CustomerAccountRef> customerAccount = null;
 
   public CustomerAccountRelationship relationshipType(String relationshipType) {

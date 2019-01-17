@@ -89,31 +89,34 @@ public class CustomerAccountHibernateDaoImpl extends BaseHibernateDaoImpl<Custom
             entity.setReceivableBalance(patchReceivableBalance);
         }
 
-        /*List<CustomerAccountTaxExemption> entityList = entity.getCustomerAccountTaxExemption();
-        List<CustomerAccountTaxExemption> patchList = patchEntity.getCustomerAccountTaxExemption();//TODO ??? Что делать с дочерними коллекциями
-        if(patchList != null && !entityList.equals(patchList)){
-            for (CustomerAccountTaxExemption t : patchList) {
-                if(!entityList.contains(t)) {
-                    entityList.add(t);
-                }
-            }
-        }*/
         List<CustomerAccountTaxExemption> taxExemptionList = entity.getCustomerAccountTaxExemption();
         List<CustomerAccountTaxExemption> patchTaxExemptionList = patchEntity.getCustomerAccountTaxExemption();
         if(patchTaxExemptionList != null && !patchTaxExemptionList.equals(taxExemptionList)) {
-            entity.setCustomerAccountTaxExemption(patchTaxExemptionList); // 9.PARAMETER CUSTOMER_ACCOUNT_TAX_EXEMPTION
+            for(CustomerAccountTaxExemption c: patchTaxExemptionList){
+                if(!taxExemptionList.contains(c)){// 9.PARAMETER CUSTOMER_ACCOUNT_TAX_EXEMPTION
+                    taxExemptionList.add(c);
+                }
+            }
         }
 
         List<CustomerAccountRelationship> relationshipList = entity.getCustomerAccountRelationship();
         List<CustomerAccountRelationship> patchRelationshipList = patchEntity.getCustomerAccountRelationship();
         if(patchRelationshipList != null && !patchRelationshipList.equals(relationshipList)) {
-            entity.setCustomerAccountRelationship(patchRelationshipList); // 10.PARAMETER CUSTOMER_ACCOUNT_RELATIONSHIP
+            for(CustomerAccountRelationship c: patchRelationshipList){// 10.PARAMETER CUSTOMER_ACCOUNT_RELATIONSHIP
+                if(!relationshipList.contains(c)){
+                    relationshipList.add(c);
+                }
+            }
         }
 
         List<Contact> contactList = entity.getContact();
         List<Contact> patchContactList = patchEntity.getContact();
         if(patchContactList != null && !patchContactList.equals(contactList)) {
-            entity.setContact(patchContactList);// 11.PARAMETER CONTACT
+            for(Contact c: patchContactList){// 11.PARAMETER CONTACT
+                if(!contactList.contains(c)){
+                    contactList.add(c);
+                }
+            }
         }
 
         CustomerRef entityCustomerRef = entity.getCustomerRef();
@@ -125,13 +128,21 @@ public class CustomerAccountHibernateDaoImpl extends BaseHibernateDaoImpl<Custom
         List<CustomerAccountBalance> accountBalances = entity.getCustomerAccountBalance();
         List<CustomerAccountBalance> patchAccountBalances = patchEntity.getCustomerAccountBalance();
         if(patchAccountBalances != null && !patchAccountBalances.equals(accountBalances)) {
-            entity.setCustomerAccountBalance(patchAccountBalances); // 13.PARAMETER CUSTOMER_ACCOUNT_BALANCE
+            for(CustomerAccountBalance c: patchAccountBalances){// 13.PARAMETER CUSTOMER_ACCOUNT_BALANCE
+                if(!accountBalances.contains(c)){
+                    accountBalances.add(c);
+                }
+            }
         }
 
         List<PaymentPlan> paymentPlans = entity.getPaymentPlan();
         List<PaymentPlan> patchPaymentPlans = patchEntity.getPaymentPlan();
         if(patchPaymentPlans != null && !patchPaymentPlans.equals(paymentPlans)) {
-            entity.setPaymentPlan(patchPaymentPlans); // 14.PARAMETER PAYMENT_PLAN
+            for(PaymentPlan p: patchPaymentPlans){// 14.PARAMETER PAYMENT_PLAN
+                if(!paymentPlans.contains(p)){
+                    paymentPlans.add(p);
+                }
+            }
         }
 
         OffsetDateTime entityLastModified = entity.getLastModified();
