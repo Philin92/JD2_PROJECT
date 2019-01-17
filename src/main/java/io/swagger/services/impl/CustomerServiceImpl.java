@@ -7,6 +7,7 @@ import io.swagger.model.Customer;
 import io.swagger.services.interfaces.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -23,5 +24,11 @@ public class CustomerServiceImpl
     CustomerServiceImpl(BaseHibernateDao<Customer,Serializable> dao){
         super(dao);
         this.customerDao = (CustomerDaoImpl) dao;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW, value = "txManager")
+    public Customer patch(long id, Customer patchEntity) {
+        return customerDao.patch(id, patchEntity);
     }
 }

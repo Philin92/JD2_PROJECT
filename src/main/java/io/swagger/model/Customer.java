@@ -15,6 +15,7 @@ import io.swagger.model.ValidFor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.validation.annotation.Validated;
@@ -59,7 +60,8 @@ public class Customer   {
   @JsonProperty("customerRank")
   private String customerRank = null;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
+  @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
   @JsonProperty("relatedParty")
   private Reference relatedParty = null;
 
