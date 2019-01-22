@@ -27,43 +27,50 @@ public class PaymentMeanDaoImpl
 
         String href = entity.getHref();
         String patchHref = patchEntity.getHref();
-        if(patchHref!=null && !href.equals(patchHref)){
+        if(href==null){entity.setHref(patchHref);}
+        else if(patchHref!=null && !href.equals(patchHref)){
             entity.setHref(patchHref);
         }
 
         String name = entity.getName();
         String patchName = patchEntity.getName();
-        if(patchName!=null && !name.equals(patchName)){
+        if(name==null){entity.setName(patchName);}
+        else if(patchName!=null && !name.equals(patchName)){
             entity.setName(patchName);
         }
 
         ValidFor validFor = entity.getValidFor();
         ValidFor patchValidFor = patchEntity.getValidFor();
-        if(patchValidFor!=null && !validFor.equals(patchValidFor)){
+        if(validFor==null){entity.setValidFor(patchValidFor);}
+        else if(patchValidFor!=null && !validFor.equals(patchValidFor)){
             entity.setValidFor(patchValidFor);
         }
 
         String type = entity.getType();
         String patchType = patchEntity.getType();
-        if(patchType!=null && !type.equals(patchType)){
+        if(type==null){entity.setType(patchType);}
+        else if(patchType!=null && !type.equals(patchType)){
             entity.setType(patchType);
         }
 
         BankAccount bankAccount = entity.getBankAccount();
         BankAccount patchBankAccount = patchEntity.getBankAccount();
-        if(patchBankAccount!=null && !bankAccount.equals(patchBankAccount)){
+        if(bankAccount==null){entity.setBankAccount(patchBankAccount);}
+        else if(patchBankAccount!=null && !bankAccount.equals(patchBankAccount)){
             entity.setBankAccount(patchBankAccount);
         }
 
         Reference reference = entity.getRelatedParty();
         Reference patchReference = patchEntity.getRelatedParty();
-        if(patchReference!=null && !reference.equals(patchReference)){
+        if(reference==null){entity.setRelatedParty(patchReference);}
+        else if(patchReference!=null && !reference.equals(patchReference)){
             entity.setRelatedParty(patchReference);
         }
 
         CreditCard creditCard = entity.getCreditCard();
         CreditCard patchCreditCard = patchEntity.getCreditCard();
-        if(patchCreditCard!=null && !creditCard.equals(patchCreditCard)){
+        if(creditCard==null){entity.setCreditCard(patchCreditCard);}
+        else if(patchCreditCard!=null && !creditCard.equals(patchCreditCard)){
             entity.setCreditCard(patchCreditCard);
         }
 

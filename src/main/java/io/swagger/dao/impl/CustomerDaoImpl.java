@@ -27,49 +27,57 @@ public class CustomerDaoImpl extends BaseHibernateDaoImpl<Customer, Serializable
 
         String href = entity.getHref();
         String patchHref = patchEntity.getHref();
-        if(patchHref != null && !href.equals(patchHref)){
+        if(href==null){entity.setHref(patchHref);}
+        else if(patchHref != null && !href.equals(patchHref)){
             entity.setHref(patchHref);
         }
 
         String name = entity.getName();
         String patchName = patchEntity.getName();
-        if(patchName != null && !name.equals(patchName)){
+        if(name==null){entity.setName(patchName);}
+        else if(patchName != null && !name.equals(patchName)){
             entity.setName(patchName);
         }
 
         String status = entity.getStatus();
         String patchStatus = patchEntity.getStatus();
-        if(patchStatus != null && !status.equals(patchStatus)){
+        if(status==null){entity.setStatus(patchStatus);}
+        else if(patchStatus != null && !status.equals(patchStatus)){
             entity.setStatus(patchStatus);
         }
 
         String description = entity.getDescription();
         String patchDescription = patchEntity.getDescription();
-        if(patchDescription != null && !description.equals(patchDescription)){
+        if(description==null){entity.setDescription(patchDescription);}
+        else if(patchDescription != null && !description.equals(patchDescription)){
             entity.setDescription(patchDescription);
         }
 
         ValidFor validFor = entity.getValidFor();
         ValidFor patchValidFor = patchEntity.getValidFor();
-        if(patchValidFor != null && !validFor.equals(patchValidFor)){
+        if(validFor==null){entity.setValidFor(patchValidFor);}
+        else if(patchValidFor != null && !validFor.equals(patchValidFor)){
             entity.setValidFor(patchValidFor);
         }
 
         String customerRank = entity.getCustomerRank();
         String patchCustomerRank = patchEntity.getCustomerRank();
-        if(patchCustomerRank != null && !customerRank.equals(patchCustomerRank)){
+        if(customerRank==null){entity.setCustomerRank(patchCustomerRank);}
+        else if(patchCustomerRank != null && !customerRank.equals(patchCustomerRank)){
             entity.setCustomerRank(patchCustomerRank);
         }
 
         Reference reference = entity.getRelatedParty();
         Reference patchReference = patchEntity.getRelatedParty();
-        if(patchReference != null && !reference.equals(patchReference)){
+        if(reference==null){entity.setRelatedParty(patchReference);}
+        else if(patchReference != null && !reference.equals(patchReference)){
             entity.setRelatedParty(patchReference);
         }
 
         List<Characteristic> characteristics = entity.getCharacteristic();
         List<Characteristic> patchCharacteristics = patchEntity.getCharacteristic();
-        if(patchCharacteristics != null && !patchCharacteristics.equals(characteristics)) {
+        if(characteristics==null){entity.setCharacteristic(patchCharacteristics);}
+        else if(patchCharacteristics != null && !patchCharacteristics.equals(characteristics)) {
             for(Characteristic c: patchCharacteristics){
                 if(!characteristics.contains(c)){
                     characteristics.add(c);
@@ -79,7 +87,8 @@ public class CustomerDaoImpl extends BaseHibernateDaoImpl<Customer, Serializable
 
         List<ContactMedium> contactMedia = entity.getContactMedium();
         List<ContactMedium> patchContactMedia = patchEntity.getContactMedium();
-        if(patchContactMedia != null && !patchContactMedia.equals(contactMedia)) {
+        if(contactMedia==null){entity.setContactMedium(patchContactMedia);}
+        else if(patchContactMedia != null && !patchContactMedia.equals(contactMedia)) {
             for(ContactMedium c: patchContactMedia){
                 if(!contactMedia.contains(c)){
                     contactMedia.add(c);
@@ -89,7 +98,8 @@ public class CustomerDaoImpl extends BaseHibernateDaoImpl<Customer, Serializable
 
         List<CustomerAccount> customerAccounts = entity.getCustomerAccount();
         List<CustomerAccount> patchCustomerAccounts = patchEntity.getCustomerAccount();
-        if(patchCustomerAccounts != null && !patchCustomerAccounts.equals(customerAccounts)) {
+        if(customerAccounts==null){entity.setCustomerAccount(patchCustomerAccounts);}
+        else if(patchCustomerAccounts != null && !patchCustomerAccounts.equals(customerAccounts)) {
             for(CustomerAccount c: patchCustomerAccounts){
                 if(!customerAccounts.contains(c)){
                     customerAccounts.add(c);
@@ -99,7 +109,8 @@ public class CustomerDaoImpl extends BaseHibernateDaoImpl<Customer, Serializable
 
         List<CustomerCreditProfile> profiles = entity.getCustomerCreditProfile();
         List<CustomerCreditProfile> patchProfiles = patchEntity.getCustomerCreditProfile();
-        if(patchProfiles != null && !patchProfiles.equals(profiles)) {
+        if(profiles==null){entity.setCustomerCreditProfile(patchProfiles);}
+        else if(patchProfiles != null && !patchProfiles.equals(profiles)) {
             for(CustomerCreditProfile c: patchProfiles){
                 if(!profiles.contains(c)){
                     profiles.add(c);
@@ -109,7 +120,8 @@ public class CustomerDaoImpl extends BaseHibernateDaoImpl<Customer, Serializable
 
         List<PaymentMean> paymentMeans = entity.getPaymentMean();
         List<PaymentMean> patchPaymentMeans = patchEntity.getPaymentMean();
-        if(patchPaymentMeans != null && !patchPaymentMeans.equals(paymentMeans)) {
+        if(paymentMeans==null){entity.setPaymentMean(patchPaymentMeans);}
+        else if(patchPaymentMeans != null && !patchPaymentMeans.equals(paymentMeans)) {
             for(PaymentMean p: patchPaymentMeans){
                 if(!paymentMeans.contains(p)){
                     paymentMeans.add(p);
